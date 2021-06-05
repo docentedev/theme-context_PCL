@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import ProductCard from './components/product-card/ProductCard';
+import ToggleTheme from './components/toggle-theme/ToggleTheme';
+import UserCard from './components/user-card/UserCard';
 
 function App() {
+
+  const [theme, setTheme] = useState('theme-light') 
+
+  const handlerToggleTheme = (newTheme: string) => {
+    setTheme(newTheme)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToggleTheme onToggle={handlerToggleTheme}/>
+      <ProductCard theme={theme} />
+      <UserCard theme={theme} />
     </div>
   );
 }
